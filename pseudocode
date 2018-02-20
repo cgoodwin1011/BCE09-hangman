@@ -1,0 +1,115 @@
+initializeProgram
+    setup html
+    hand off to initializeGame
+
+initializeGame
+	set up graphics
+	play intro theme
+	lightning flash???
+	toccata & fugue
+  dim playButton
+  undim getHint
+  undim restartGame
+  undim quitGame
+  undim input
+  secretWord = "LoremIpsum"
+	playingGame = true
+  gameScore = 10
+  userScore = 0
+
+
+awaitUserAction
+  getinputType
+  if playingGame === true
+     call handleGameEvent
+  else
+    call handleNonGameEvent
+
+handleNonGameEvent
+	switch(action)
+		case play:  
+			run initializeGame
+
+		case restart:
+      should be dimmed
+      confirm
+	    run initialization
+
+    case getHint:
+      should be dimmed
+      do nothing
+
+    case solvePuzzle:
+      should be dimmed
+      do nothing
+
+    case quitGame:
+      show secret word (if any)
+      redirect to userHomePage
+
+    case typeLetter:
+    case clickOnLetter:
+      should be dimmed
+      do nothing
+
+handleGameEvent
+	switch(action)
+		case play:
+      ahould be dimmed
+		  do nothing
+
+		case restart:
+      confirm
+      run initialization again
+
+    case getHint:
+      giveHint (flash unguessed letters)
+
+    case solvePuzzle:
+      Allows user to guess rest of word
+
+    case quitGame:
+      show secret word
+      leave game
+
+    case typeLetter:
+    case clickOnLetter:
+      is letter already guessed?
+        yes -- alert user to guess again
+        no -- add letter to list of guessed letters
+      is letter in secretWord
+        yes --
+          show solved letters on screen
+          is word completely solved?
+            yes --
+              victoryLap
+            no --
+              littleCheer
+              await next user action
+        no --
+          increase user "score"
+          add to hangman figure
+            if score < 9
+              littleBoo
+            else if score >= 9
+              make ominous noises
+              defeatLap
+
+littleCheer
+  play a sprite note
+  quiet cheering
+
+littleBoo
+  play ominous music
+  play crowd booing
+
+victoryLap
+  alert user
+  congratulatory display
+  undim playButton
+  dim getHint
+  dim restartGame
+
+defeatLap
+  play calamitous music
+  screen effects

@@ -1,0 +1,45 @@
+#theKeyboard {
+        position: relative;
+        padding: 0;
+        margin: 0; 
+        width: 300px; 
+        /* border: 2px red dotted; */
+    }
+
+    .keyboardRow {
+        position: relative;
+        padding: 0;
+        margin: 0; 
+        margin-top: -20px;
+        margin-bottom: -10px; 
+        text-align: center;
+        font-family: 'Courier New', Courier, monospace;
+        font-weight: bold;
+        /* height: 50px; */
+        /* border: 1px green solid; */
+        /* background-color: aliceblue; */
+        
+    }
+
+    .keyboardKey {
+        color: blue;
+        font-size: 10pt;
+        margin: 1px;
+        padding: 2px;
+        border-radius: 20%;
+    }
+
+
+
+
+topRow = ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"]
+middleRow = ["a", "s", "d", "f", "g", "h", "j", "k", "l"]
+bottomRow = ["z", "x", "c", "v", "b", "n", "m"]
+qwertyKeyboard = [topRow, middleRow, bottomRow]
+
+
+getting randomWords
+
+http://api.wordnik.com:80/v4/words.json/randomWords?hasDictionaryDef=true&minCorpusCount=0&minLength=5&maxLength=15&limit=1&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5
+
+["skinny", "rematch", "heavyweight", "dimensional", "bleeding", "guerilla", "addiction", "fantastic", "aerodynamic", "gossip", "regret", "pyramid", "audacity", "protest", "computer", "flirtation", "foreign", "parade", "royalty", "proven", "possess", "initial", "crunch", "amateur", "ambition", "handlebars", "distillery", "wolves", "harmless", "anything", "direction", "billionaire", "queen", "armchair", "cognitive", "crayon", "crawler", "twisted", "accommodation", "soul", "prophetic", "commando", "bewitching", "mongrel", "bribery", "engine", "dismemberment", "brutish", "apparition", "sparkle", "bumper", "undersea", "agonizing", "downward", "crimson", "extravagant", "dazzling", "freewill", "glumly", "hermit", "encounter", "jackknife", "cardinal", "obsession", "godless", "founder", "expansion", "glandular", "eternal", "someone", "deformity", "escape", "cannibalism", "wartime", "feature", "eyetooth", "extortion", "massacre", "generation", "council", "riddle", "carnal", "crater", "consultant", "cybernetic", "lavender", "heartsick", "sextile", "unquiet", "incognito", "canvass", "physics", "javascript", "altgeld", "retinue", "esquire", "arsenal", "chaufer", "repulse", "leftist", "acerbic", "bristle", "dentate", "concert"] 

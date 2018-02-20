@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Page Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- reset browser styles -->
+  <link rel="assets/stylesheet" type="text/css" media="screen" href="styles/reset.css" />
+  
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+    crossorigin="anonymous">
+  
+    <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+    crossorigin="anonymous">
+  
+
+  <link rel="stylesheet" type="text/css" media="screen" href="styles/main.css" />
+  
+  <!-- link fonts -->
+  <link href="https://fonts.googleapis.com/css?family=UnifrakturCook:700|UnifrakturMaguntia|Comfortaa|Fredericka+the+Great|Berkshire+Swash|Cousine|Roboto+Mono" rel="stylesheet">
+  
+  
+  <!-- scripts -->
+  <script src="scripts/main00.js"></script>
+</head>
+
+<body>
+  <div id="everything-wrapper" class="black-background">
+    <div id="displayedHTML">
+    <header>
+      <div id="logo">
+        <img src="graphics/logos/HangmanLogo.png">
+      </div>
+      <nav>
+        <ul class="horizontal-list">
+          <li>
+            <button type="button" class="btn horizontal-list-item">Play</button>
+          </li>
+          <li>
+            <button type="button" class="btn horizontal-list-item">Restart</button>
+          </li>
+          <li>
+            <button type="button" class="btn horizontal-list-item">Get Hint</button>
+          </li>
+          <li>
+            <button type="button" class="btn horizontal-list-item">Solve Word</button>
+          </li>
+          <li>
+              <button type="button" class="btn horizontal-list-item">Instructions</button>
+          </li>
+          <li>
+            <button type="button" class="btn horizontal-list-item">Leave Game</button>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <div id="grid-wrapper" class="container">
+      <!-- <div id="left-sidebar" class="col-md-1">
+      </div> -->
+      <div id="main-display" class="col-md-12">
+        <div class="row">
+          <div id="illustration" class="col-md-4">
+            <img src="graphics/stick_figure/09a.png" height="500px" alt="placeholder">
+          </div>
+          <div id="control-panel" class="col-md-8">
+            <div class="row" id="decorativeRow00">
+                <br>* * *<br>
+            </div>
+            <div id="score-panel" class="row">
+              Guesses Remaining:
+              <span id="remaining-guesses">__</span>
+              <br>Letters Unsolved: <span id=letters-Unsolved>__</span>
+              <p id="word-display-title">The Secret is</p>
+              <p id="word-display">_ b _ _ _ d</p>
+            </div>
+            <div class="row" id="decorativeRow01">
+                <br><br>* * *<br><br>
+            </div>
+            <div id="input-panel" class="row" style="float: clear"></div>
+            <div class="row" id="decorativeRow02">
+                <br><br>* * *<br><br>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <div id="right-sidebar" class="col-md-1">
+      </div> -->
+    </div>
+    </div>≈
+    <script>
+      // initialize game
+      // musicTheme.loop = true;
+      // musicTheme.play();
+      var secretWord = chooseWord();
+      // var secretWord = 'eeeeeee'
+      var wordLength = secretWord.length;
+      var guessList = []
+      var badGuesses = []
+      var targetWord = '';
+      for (i = 0; i < secretWord.length; i++) {
+        targetWord += '_';
+      }
+      
+      console.log(secretWord);
+      document.getElementById("remaining-guesses").innerHTML = remainingGuesses;
+      document.getElementById("letters-Unsolved").innerHTML = wordLength;
+      document.getElementById("input-panel").innerHTML = genKeyBoardHTML();
+      document.getElementById("word-display").innerHTML = targetWord;
+      
+      //get guess
+      var guess = 'e';
+      var guessFoundAt = charFoundAt(secretWord, guess, 0);
+      if (guessFoundAt != -1) {
+        guessList[guessList.length] = guess;
+        console.log(guessFoundAt)
+        // debugger
+        for (i = 0; i < guessFoundAt.length; i++) {
+          targetWord = replaceCharAt(targetWord, guessFoundAt[i], guess)
+          // console.log(targetWord);
+        } 
+      } else {
+
+        // console.log(targetWord);
+      }
+      console.log(targetWord)
+      document.getElementById("word-display").innerHTML = targetWord;
+      
+      // document.getElementById("decorativeRow02").innerHTML = "<h1>"+targetWord+"</h1>";
+      
+      // var test = charFoundAt("Mississippi", "i", 0);
+      // document.getElementById("decorativeRow02").innerHTML = "<h1>"+String(test)+"</h1>";
+      // console.log("test is "+test)
+
+      // a meothod to capture all html in document except body...
+      // var Q = document.getElementById("displayedHTML").innerHTML;
+      // console.log(Q);
+      // document.getElementById("displayedHTML").innerHTML = "";
+      // for (var w=0; w < 10000;w++) {
+      //   document.getElementById("displayedHTML").innerHTML = String(w);
+      // };
+      // document.getElementById("displayedHTML").innerHTML = Q;
+    
+    </script>
+
+  </div>
+</body>
+
+</html>

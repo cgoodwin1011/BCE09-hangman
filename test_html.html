@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Page Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- reset browser styles -->
+  <link rel="assets/stylesheet" type="text/css" media="screen" href="styles/reset.css" />
+  
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+    crossorigin="anonymous">
+  
+    <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+    crossorigin="anonymous">
+  
+
+  <link rel="stylesheet" type="text/css" media="screen" href="styles/main.css" />
+  
+  <!-- link fonts -->
+  <link href="https://fonts.googleapis.com/css?family=UnifrakturCook:700|UnifrakturMaguntia|Comfortaa|Fredericka+the+Great|Berkshire+Swash" rel="stylesheet">
+  
+  
+  <!-- scripts -->
+  <script type="text/javascript" src="scripts/main00.js"></script>
+
+  <style>
+    .big-red {
+        color:red;
+        font-size: 3em;
+    }
+
+    
+
+  </style>
+
+
+</head>
+
+<body>
+
+    <div id="target1">
+        Hello
+    </div>
+
+    <script type="text/javascript">
+
+        var foo = document.getElementById("target1");
+        console.log(foo);
+        foo.innerHTML = "Bye";
+        // foo = document.getElementById("target1").innerHTML;
+        console.log(foo);
+        document.getElementById("target1").setAttribute("class", "big-red");
+        console.log(foo);
+        var K = genKeyBoardHTML();
+        console.log(K)
+        foo.innerHTML = K;
+    </script>
+
+</body>
+</html>
