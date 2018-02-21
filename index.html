@@ -7,7 +7,7 @@
   <title>Page Title</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- reset browser styles -->
-  <link rel="assets/stylesheet" type="text/css" media="screen" href="styles/reset.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="styles/reset.css" />
   
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
@@ -30,6 +30,7 @@
   
   <!-- scripts -->
   <script src="scripts/main00.js"></script>
+  
 </head>
 
 <body>
@@ -39,13 +40,14 @@
         <div id="logo">
           <img src="graphics/logos/HangmanLogo.png">
         </div>
-        <div class="dropdown"><span id="menuLabel">Theme:</span>
-          <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">Random Words
+        <div class="dropdown"><span id="menuLabel"><br></span>
+          <button class="btn dropdown-toggle" type="button" data-toggle="dropdown"><span id="menu-default">Theme:<br> Famous Pirates </span>
           <span class="caret"></span></button>
-          <ul class="dropdown-menu">
-            <li><a href="#">Random Words</a></li>
-            <li><a href="#">World Cities</a></li>
-            <li><a href="#">Russian Novelists</a></li>
+          <ul class="dropdown-menu" >
+              <li><a id="famous-pirates" class="dropdown-item" onclick="pickTheme(this.id)">Famous Pirates</a></li>
+            <li><a id="random-words" class="dropdown-item" onclick="pickTheme(this.id)">Random Words</a></li>
+            <li><a id="world-cities" href="#" onclick="pickTheme(this.id)">World Cities</a></li>
+            <li><a id="russian-novelists" href="#" onclick="pickTheme(this.id)">Russian Novelists</a></li>
           </ul>
         </div>
         <nav>
@@ -94,11 +96,11 @@
               <div class="row" id="decorativeRow01">
                   <!-- <br><br>* * *<br><br> -->
               </div>
-              <div id="input-panel" class="row" style="float: clear"></div>
+              <div id="input-panel" class="row"></div>
               <div class="row" id="decorativeRow02">
                   
               </div>
-            </div>
+            </div>photo
           </div>
         </div>
         <!-- <div id="right-sidebar" class="col-md-1">
@@ -115,11 +117,14 @@
     // musicTheme.loop = true;
     // musicTheme.play();
     
+    //this sucks ...
+    console.log("BUGS!\nsomething is interfereing with the timing between the alerts and the html display.\nFor instance, it records the 'r' in a ctrl-r to reload as a keystroke in the game.\nThis also screws up the scoring \nGrrrrr.  \nHow do I fix that?")
+
     //Globals.
-    var theme = "randomWords";
+    var myTheme = "famousPirates";
     var gamesWon = 0;  
     var gamesLost = 0;
-    var secretWord = chooseWord(theme);
+    var secretWord = chooseWord(myTheme);
     var guessList = []
     var badGuesses = []
     var numBadGuesses = 0;
@@ -129,10 +134,13 @@
     var musicTheme = new Audio("sounds/music_zapsplat_trick_or_treat.mp3");
     var losingTheme = new Audio("sounds/human_crying_sobbing_male_35_years_old.mp3");
     var winningTheme = new Audio("sounds/Hallelujah-sound-effect.mp3");
+    var cheersAudio = new Audio("sounds/Ovation-Mike_Koenig-1061486511.mp3");
+    var boosAudio = new Audio("sounds/aaj_0211_CrazyLghSFX_01.mp3")
     var displayWord = '';
     for (i = 0; i < secretWord.length; i++) {
       displayWord += '_';
     }
+    setIllustration(10)
 
     console.log(secretWord);
 
@@ -146,44 +154,13 @@
       // if input is screen kbd click --> hanlded in main.js
       // if input is keyboard click 
     document.onkeyup = function(event) {
-      // console.log("we are handling a key event "+event.key);
       if (isAlpha(event.key)) {
-        // console.log("had it isAlpha");
         handleGuess(event.key);
       } else {
-        // alert("please type a letter");
+        alert("please type a letter");
       }
     }
 
-
-
-    // var x = event.key;
-
-    // If the pressed keyboard button is "a" or "A" (using caps lock or shift), alert some text.
-
-      // if (x == "a" || x == "A") { 
-      //     alert ("You pressed the 'A' key!");
-      // }
-
-
-
-    // document.getElementById("word-display").innerHTML = displayWord;
-    
-    // document.getElementById("decorativeRow02").innerHTML = "<h1>"+displayWord+"</h1>";
-    
-    // var test = charFoundAt("Mississippi", "i", 0);
-    // document.getElementById("decorativeRow02").innerHTML = "<h1>"+String(test)+"</h1>";
-    // console.log("test is "+test)
-
-    // a meothod to capture all html in document except body...
-    // var Q = document.getElementById("displayedHTML").innerHTML;
-    // console.log(Q);
-    // document.getElementById("displayedHTML").innerHTML = "";
-    // for (var w=0; w < 10000;w++) {
-    //   document.getElementById("displayedHTML").innerHTML = String(w);
-    // };
-    // document.getElementById("displayedHTML").innerHTML = Q;
-  
   </script>
 
 </body>

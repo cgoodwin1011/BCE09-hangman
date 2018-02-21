@@ -77,7 +77,7 @@ btn:visited {
 #everything-wrapper {
     position: relative;
     margin: auto;
-    margin-top: 50px;
+    margin-top: 10px;
     width: 900px; 
     overflow: hidden;
     background-color: transparent;
@@ -190,6 +190,26 @@ btn:visited {
     padding:0;
     min-height: 500px;
     /* background-color: lime; */
+}
+
+#menuLabel {
+    display: inline-block;
+    /* background-color: #401E0D; */
+    /* border: 0.5px #FF6719 solid; */
+    color: #401E0D;
+    font-size: 1.8em;
+    text-shadow:
+    -1px -1px 0  rgb(255, 159, 111),
+    1px -1px 0   #FF6719,
+    -1px 1px 0   #FF6719,
+    1px 1px 0   #FF6719;
+    /* margin: auto 1px; */
+    /* height: 30px;  */
+    /* background-color: #833E1B;   
+    color: #E58F2F;
+    border: 1px  #E58F2F solid;
+    padding: 3px; 
+    margin: 0px; */
 }
 
 #bad-guesses {

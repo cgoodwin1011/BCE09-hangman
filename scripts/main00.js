@@ -1,12 +1,96 @@
 // Charles Goodwin | cgoodwin2127@gmail.com | hangman-HW3 | PennCodingBootCampJan18
 
-var randomWords = ["skinny", "rematch", "heavyweight", "dimensional", "bleeding", "guerilla", "addiction", "fantastic", "aerodynamic", "gossip", "regret", "pyramid", "audacity", "protest", "computer", "flirtation", "foreign", "parade", "royalty", "proven", "possess", "initial", "crunch", "amateur", "ambition", "handlebars", "distillery", "wolves", "harmless", "anything", "direction", "billionaire", "queen", "armchair", "cognitive", "crayon", "crawler", "twisted", "accommodation", "soul", "prophetic", "commando", "bewitching", "mongrel", "bribery", "engine", "dismemberment", "brutish", "apparition", "sparkle", "bumper", "undersea", "agonizing", "downward", "crimson", "extravagant", "dazzling", "freewill", "glumly", "hermit", "encounter", "jackknife", "cardinal", "obsession", "godless", "founder", "expansion", "glandular", "eternal", "someone", "deformity", "escape", "cannibalism", "wartime", "feature", "eyetooth", "extortion", "massacre", "generation", "council", "riddle", "carnal", "crater", "consultant", "cybernetic", "lavender", "heartsick", "sextile", "unquiet", "incognito", "canvass", "physics", "javascript", "altgeld", "retinue", "esquire", "arsenal", "chaufer", "repulse", "leftist", "acerbic", "bristle", "dentate", "concert"]
-var russianWriters = ["Tolstoy", "Dostoyevsky", "Pushkin", "Turgenev", "Nabokov", "Gogol", "Solzhenitsyn", "Gorky", "Pasternak", "Goncharov", "Lermontov", "Chernychevsky", "Bulgakov"]
+var famousPirates = ["Barbarossa", "FrancisDrake","CalicoJack", "Blackbeard", "HenryEvery", "WilliamKidd"];
+
+var randomWords = ["skinny", "rematch", "heavyweight", "dimensional", "bleeding", "guerilla", "addiction", "fantastic", "aerodynamic", "gossip", "regret", "pyramid", "audacity", "protest", "computer", "flirtation", "foreign", "parade", "royalty", "proven", "possess", "initial", "crunch", "amateur", "ambition", "handlebars", "distillery", "wolves", "harmless", "anything", "direction", "billionaire", "queen", "armchair", "cognitive", "crayon", "crawler", "twisted", "accommodation", "soul", "prophetic", "commando", "bewitching", "mongrel", "bribery", "engine", "dismemberment", "brutish", "apparition", "sparkle", "bumper", "undersea", "agonizing", "downward", "crimson", "extravagant", "dazzling", "freewill", "glumly", "hermit", "encounter", "jackknife", "cardinal", "obsession", "godless", "founder", "expansion", "glandular", "eternal", "someone", "deformity", "escape", "cannibalism", "wartime", "feature", "eyetooth", "extortion", "massacre", "generation", "council", "riddle", "carnal", "crater", "consultant", "cybernetic", "lavender", "heartsick", "sextile", "unquiet", "incognito", "canvass", "physics", "javascript", "altgeld", "retinue", "esquire", "arsenal", "chaufer", "repulse", "leftist", "acerbic", "bristle", "dentate", "concert"];
+
+var russianWriters = ["Tolstoy", "Dostoyevsky", "Pushkin", "Turgenev", "Nabokov", "Gogol", "Solzhenitsyn", "Gorky", "Pasternak", "Goncharov", "Lermontov", "Chernychevsky", "Bulgakov"];
+
+var worldCities =["Boston", "London", "Rome", "Berlin", "Philadelphia"];
 
 
+function pickTheme(theTheme) {
+  var theWarning = "Changing themes will restart game.\n\nClick OK to start new game with new theme.\n\nClick cancel to keep theme.";
+  switch(theTheme) {
+      case "famous-pirates":
+        if (confirm(theWarning)) {
+            document.getElementById("menu-default").innerHTML = "Theme:<br>&nbsp  Famous Pirates  &nbsp";
+            myTheme = "famousPirates";
+          }
+        startGame("famousPirates");
+        break;
+     case "random-words":
+        if (confirm(theWarning)) {
+          document.getElementById("menu-default").innerHTML = "Theme:<br>&nbsp  Random Words  &nbsp";
+          myTheme = "randomWords";
+        }
+        startGame("randomWords");
+        break;
+      case "world-cities":
+        if (confirm(theWarning)) {
+          document.getElementById("menu-default").innerHTML = "Theme:<br>World Cities";
+          myTheme = "worldCities";
+        }
+        startGame("worldCities");
+        break;
+      case "russian-novelists":
+        if (confirm(theWarning)) {
+          document.getElementById("menu-default").innerHTML = "Theme:<br>Russian Novelists";
+          myTheme = "russianWriters";
+        }
+        startGame("russianWriters");
+        break;
+  }
+}
+
+
+
+function setIllustration(aNumber) {
+  switch(aNumber) {
+    case 10:
+      document.getElementById("illustration").innerHTML = '<img id ="hanging" src="graphics/stick_figure/10.png" height="600px" alt="hanged man">';
+      break;
+    case 9:
+      document.getElementById("illustration").innerHTML = '<img id ="hanging" src="graphics/stick_figure/9.png" height="600px" alt="hanged man">';
+      break;
+    case 8:
+      document.getElementById("illustration").innerHTML = '<img id ="hanging" src="graphics/stick_figure/8.png" height="600px" alt="hanged man">';
+      break;
+    case 7:
+      document.getElementById("illustration").innerHTML = '<img id ="hanging" src="graphics/stick_figure/7.png" height="600px" alt="hanged man">';
+      break;
+    case 6:
+      document.getElementById("illustration").innerHTML = '<img id ="hanging" src="graphics/stick_figure/6.png" height="600px" alt="hanged man">';
+      break;
+    case 5:
+      document.getElementById("illustration").innerHTML = '<img id ="hanging" src="graphics/stick_figure/5.png" height="600px" alt="hanged man">';
+      break;
+    case 4:
+      document.getElementById("illustration").innerHTML = '<img id ="hanging" src="graphics/stick_figure/4.png" height="600px" alt="hanged man">';
+      break;
+    case 3:
+      document.getElementById("illustration").innerHTML = '<img id ="hanging" src="graphics/stick_figure/3.png" height="600px" alt="hanged man">';
+      break;
+    case 2:
+      document.getElementById("illustration").innerHTML = '<img id ="hanging" src="graphics/stick_figure/2.png" height="600px" alt="hanged man">';
+      break;
+    case 1:
+      document.getElementById("illustration").innerHTML = '<img id ="hanging" src="graphics/stick_figure/1.png" height="600px" alt="hanged man">';
+      break;
+    case 0:
+      document.getElementById("illustration").innerHTML = '<img id ="hanging" src="graphics/stick_figure/0.png" height="600px" alt="hanged man">';
+      break;
+    // default:
+    //   document.getElementById("illustration").innerHTML = "<h1>There's always something wrong,<br>isn't there?";
+    //   break;
+  }
+}
 
 function chooseWord(chosenTheme) {
   switch(chosenTheme) {
+    case "famousPirates":
+      return famousPirates[Math.floor(Math.random() * famousPirates.length)];
+      break; // don't really need this, do we?
     case "randomWords":
       return randomWords[Math.floor(Math.random() * randomWords.length)];
       break; // don't really need this, do we?
@@ -16,18 +100,18 @@ function chooseWord(chosenTheme) {
     case "worldCities":
       return worldCities[Math.floor(Math.random() * worldCities.length)];
       break;
-    }
-    
+  }
 }
 
-function startGame() {
-  secretWord = chooseWord(theme);
+function startGame(inTheme) {
+  console.log("in theme is"+inTheme)
+  secretWord = chooseWord(inTheme);
   guessList = []
   badGuesses = []
   numBadGuesses = 0;
   numGuesses = 10;
   remainingGuesses = numGuesses;
-  lettersUnsolved= secretWord.length; 
+  lettersUnsolved = secretWord.length;
   displayWord = '';
   for (i = 0; i < secretWord.length; i++) {
     displayWord += '_';
@@ -41,6 +125,8 @@ function initializeDisplay() {
   document.getElementById("letters-unsolved").innerHTML = secretWord.length;
   document.getElementById("input-panel").innerHTML = genKeyBoardHTML();
   document.getElementById("word-display").innerHTML = displayWord;
+  setIllustration(10)
+  // document.getElementById("illustration").innerHTML = '<img id ="hanging" src="graphics/stick_figure/6.png" height="600px" alt="hanged man">';
 }
 
 
@@ -69,10 +155,7 @@ function genKeyBoardHTML() {
 }
 
 function kbdClick(where) {
-    console.log(where);
-    console.log(charFoundAt(secretWord, where, 0));
     handleGuess(where);
-
 }
 
 function isAlpha(chr) {
@@ -91,9 +174,10 @@ function countChar(inString, inChar) {
 }
 
 function youLose() {
-  losingTheme.play();
-  if (confirm("You lose! \n\nWanna try this again?")) {
-    startGame();
+  gamesLost++;
+  // losingTheme.play();
+  if (confirm("You lose!\n\nYour record is now\n\n"+gamesWon+" games won and "+gamesLost+" lost \n\nWanna try this again?")) {
+    startGame(myTheme);
   } else {
     alert("Thank you for playing");
   }
@@ -101,8 +185,9 @@ function youLose() {
 
 function youWin() {
   winningTheme.play();
+  gamesWon++;
   if (confirm("You won! \n\nWanna try this again?")) {
-    startGame();
+    startGame(myTheme);
   } else {
     alert("Goodbye");
   }
@@ -110,50 +195,52 @@ function youWin() {
 
 function handleGuess(aGuess) {
   var guessFoundAt = charFoundAt(secretWord, aGuess, 0);
-  // console.log("arrived at handleGuess with a '"+aGuess+"'")
-  // console.log("at we found this letter at locations: "+guessFoundAt)
-  //first, check for duplicats.  
+  //first, check for duplicates.
   if (charInString(displayWord.toLowerCase(), aGuess.toLowerCase()) || thingInArray(badGuesses, aGuess) ) {
-    alert("You guessed "+aGuess+" already.  Try again!") 
-  } else { 
+    alert("You guessed "+aGuess+" already.  Try again!")
+  } else {
     if (guessFoundAt != -1) {
       // made a good guess
       guessList[guessList.length] = aGuess;
-      console.log("guess found at "+guessFoundAt)
-      console.log("number of unsolved letters is"+lettersUnsolved)
-            for (i = 0; i < guessFoundAt.length; i++) {
+      for (i = 0; i < guessFoundAt.length; i++) {
         displayWord = replaceCharAt(displayWord, guessFoundAt[i], aGuess);
         lettersUnsolved--;
-      } 
+      }
       if (lettersUnsolved === 0) {
         youWin();
       }
-      // console.log("number of unsolved letters is"+lettersUnsolved)
       document.getElementById("word-display").innerHTML = displayWord;
       document.getElementById("letters-unsolved").innerHTML = lettersUnsolved;
-    
+
     } else {
         //made bad guess ,,,
-        // console.log("that was wrong")
         badGuesses[badGuesses.length] = aGuess;
-        // console.log("bad guesses are"+badGuesses.toString());
         numBadGuesses++;
         remainingGuesses--;
+        setIllustration(remainingGuesses);
         document.getElementById("remaining-guesses").innerHTML = remainingGuesses;
         document.getElementById("bad-guesses").innerHTML = badGuesses.sort();
         if (remainingGuesses === 0) {
             youLose();
-        }
       }
-    }        
+    }
   }
-        
+}  
+
+function playCheer() {
+  cheersAudio.play();
+}
+
+function playBoo() {
+  boosAudio.play();
+}
+
 function handleNavMenuEvent(whichButton) {
   switch(whichButton) {
     case "play":
       break;
     case "restart":
-      startGame();
+      startGame(myTheme);
       break;
     case "get-hint":
       var hint = secretWord[Math.floor(Math.random() * secretWord.length)];
@@ -176,7 +263,7 @@ function charFoundAt(inString, searchChar, startWhere) {
     searchChar = searchChar.toLowerCase();
     for (i = 0; i < inString.length; i++) {
         if (inString[i] === searchChar) {
-            returnList.push(i); 
+            returnList.push(i);
         }
     }
     if (returnList.length != 0) {

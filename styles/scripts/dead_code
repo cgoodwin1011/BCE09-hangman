@@ -1,0 +1,54 @@
+    var atPosition = inString.slice(startWhere).search(searchString);
+    
+    if (atPosition != -1) {
+        atPosition += startWhere;
+    }
+    if (atPosition === -1) {
+        return -1
+    } else if (atPosition === inString.length-1) {
+        return [atPosition];
+    } else {
+        returnList[returnList.length] = atPosition;
+        var next = charFoundAt(inString, searchString, (atPosition+1))
+        if (next === -1) {
+            return returnList;
+        } else {
+            returnList.push(next);
+            return returnList;
+        }        
+    }
+
+    // if (atPosition > -1) {
+
+    //     console.log("atPosition is "+atPosition);
+
+    //     returnList[returnList.length] = atPosition+startWhere;
+
+    //     console.log("resturn list is "+returnList.toString());
+    //     console.log("restOfString is "+inString.slice(atPosition+1));
+    //     debugger
+    //     next = charFoundAt(inString, searchString, atPosition+1);
+    //     console.log("next is "+next)
+    //     if (next === -1) {
+    //         return returnList;
+    //     }
+    //     debugger
+    //     if (next !== [-1]) {
+    //         debugger
+    //         return returnList.concat(next);
+    //     }
+
+    // } else if (atPosition === -1) {
+    //     debugger
+    //     return [-1];
+    // }
+
+    // // while (inString.search(searchString.slice(curPosition)) > -1) {
+    //     debugger
+    //     atPosition = inString.search(searchString.slice(curPosition));
+    //     returnList[returnList.length] = atPosition;
+    //     curPosition = atPosition + 1;
+    //     console.log(returnList);
+    // }
+//     return returnList;
+// }
