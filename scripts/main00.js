@@ -186,7 +186,7 @@ function youLose() {
 function youWin() {
   winningTheme.play();
   gamesWon++;
-  if (confirm("You won! \n\nWanna try this again?")) {
+  if (confirm("You won!\n\nYour record is now\n\n"+gamesWon+" games won and "+gamesLost+" lost \n\nWanna try this again?")) {
     startGame(myTheme);
   } else {
     alert("Goodbye");
