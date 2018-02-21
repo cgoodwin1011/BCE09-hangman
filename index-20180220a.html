@@ -39,22 +39,22 @@
         <div id="logo">
           <img src="graphics/logos/HangmanLogo.png">
         </div>
-        <div class="dropdown"><span id="menuLabel">Theme:</span>
-          <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">Random Words
+        <div class="dropdown">
+          <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">Choose your Theme
           <span class="caret"></span></button>
           <ul class="dropdown-menu">
-            <li><a href="#">Random Words</a></li>
+            <li><a href="#">Random</a></li>
             <li><a href="#">World Cities</a></li>
             <li><a href="#">Russian Novelists</a></li>
           </ul>
         </div>
         <nav>
           <ul class="horizontal-list">
-            <!-- <li>
-              <button type="button" id="play" onclick="handleNavMenuEvent(this.id)"  class="btn horizontal-list-item">Play</button>
-            </li> -->
             <li>
-              <button type="button" id="restart" onclick="handleNavMenuEvent(this.id)"  class="btn horizontal-list-item">New Game</button>
+              <button type="button" id="play" onclick="handleNavMenuEvent(this.id)"  class="btn horizontal-list-item">Play</button>
+            </li>
+            <li>
+              <button type="button" id="restart" onclick="handleNavMenuEvent(this.id)"  class="btn horizontal-list-item">Restart</button>
             </li>
             <li>
               <button type="button" id="get-hint" onclick="handleNavMenuEvent(this.id)" class="btn horizontal-list-item">Get Hint</button>
@@ -81,13 +81,13 @@
             </div>
             <div id="control-panel" class="col-md-8">
               <div class="row" id="decorativeRow00">
-                  <br>
+                  <br>* * *<br>
               </div>
               <div id="score-panel" class="row stroke-me">
                 Guesses Remaining:
                 <span id="remaining-guesses">__</span>
                 <br>Letters Unsolved: <span id=letters-unsolved>__</span>
-                <p>Bad guesses are: <br><span id="bad-guesses">None</span></p>
+                <p>Bad guesses are: <br><span id="bad-guesses"></span></p>
                 <p id="word-display-title">The Secret is</p>
                 <p id="word-display"></p>
               </div>
@@ -105,87 +105,83 @@
         </div> -->
       </div>
     </div>
-    <div id="footer">
-
-    </div>
-  </div>
-
-  <script>
-    // initialize game
-    // musicTheme.loop = true;
-    // musicTheme.play();
-    
-    //Globals.
-    var theme = "randomWords";
-    var gamesWon = 0;  
-    var gamesLost = 0;
-    var secretWord = chooseWord(theme);
-    var guessList = []
-    var badGuesses = []
-    var numBadGuesses = 0;
-    var numGuesses = 10;
-    var remainingGuesses = numGuesses;
-    var lettersUnsolved= secretWord.length; 
-    var musicTheme = new Audio("sounds/music_zapsplat_trick_or_treat.mp3");
-    var losingTheme = new Audio("sounds/human_crying_sobbing_male_35_years_old.mp3");
-    var winningTheme = new Audio("sounds/Hallelujah-sound-effect.mp3");
-    var displayWord = '';
-    for (i = 0; i < secretWord.length; i++) {
-      displayWord += '_';
-    }
-
-    console.log(secretWord);
-
-    // Intialize display
-    document.getElementById("remaining-guesses").innerHTML = remainingGuesses;
-    document.getElementById("letters-unsolved").innerHTML = secretWord.length;
-    document.getElementById("input-panel").innerHTML = genKeyBoardHTML();
-    document.getElementById("word-display").innerHTML = displayWord;
-    
-    // waiting for input
-      // if input is screen kbd click --> hanlded in main.js
-      // if input is keyboard click 
-    document.onkeyup = function(event) {
-      // console.log("we are handling a key event "+event.key);
-      if (isAlpha(event.key)) {
-        // console.log("had it isAlpha");
-        handleGuess(event.key);
-      } else {
-        // alert("please type a letter");
+    <script>
+      // initialize game
+      // musicTheme.loop = true;
+      // musicTheme.play();
+      
+      //Globals.
+      var theme = "wordList";
+      var gamesWon = 0;  
+      var gamesLost = 0;
+      var secretWord = chooseWord(theme);
+      var guessList = []
+      var badGuesses = []
+      var numBadGuesses = 0;
+      var numGuesses = 10;
+      var remainingGuesses = numGuesses;
+      var lettersUnsolved= secretWord.length; 
+      var musicTheme = new Audio("sounds/music_zapsplat_trick_or_treat.mp3");
+      var losingTheme = new Audio("sounds/human_crying_sobbing_male_35_years_old.mp3");
+      var winningTheme = new Audio("sounds/Hallelujah-sound-effect.mp3");
+      var targetWord = '';
+      for (i = 0; i < secretWord.length; i++) {
+        targetWord += '_';
       }
-    }
+
+      console.log(secretWord);
+
+      // Intialize display
+      document.getElementById("remaining-guesses").innerHTML = remainingGuesses;
+      document.getElementById("letters-unsolved").innerHTML = secretWord.length;
+      document.getElementById("input-panel").innerHTML = genKeyBoardHTML();
+      document.getElementById("word-display").innerHTML = targetWord;
+      
+      // waiting for input
+        // if input is screen kbd click --> hanlded in main.js
+        // if input is keyboard click 
+      document.onkeyup = function(event) {
+        // console.log("we are handling a key event "+event.key);
+        if (isAlpha(event.key)) {
+          // console.log("had it isAlpha");
+          handleGuess(event.key);
+        } else {
+          // alert("please type a letter");
+        }
+      }
 
 
 
-    // var x = event.key;
+      // var x = event.key;
 
-    // If the pressed keyboard button is "a" or "A" (using caps lock or shift), alert some text.
+      // If the pressed keyboard button is "a" or "A" (using caps lock or shift), alert some text.
 
-      // if (x == "a" || x == "A") { 
-      //     alert ("You pressed the 'A' key!");
-      // }
+        // if (x == "a" || x == "A") { 
+        //     alert ("You pressed the 'A' key!");
+        // }
 
 
 
-    // document.getElementById("word-display").innerHTML = displayWord;
+      // document.getElementById("word-display").innerHTML = targetWord;
+      
+      // document.getElementById("decorativeRow02").innerHTML = "<h1>"+targetWord+"</h1>";
+      
+      // var test = charFoundAt("Mississippi", "i", 0);
+      // document.getElementById("decorativeRow02").innerHTML = "<h1>"+String(test)+"</h1>";
+      // console.log("test is "+test)
+
+      // a meothod to capture all html in document except body...
+      // var Q = document.getElementById("displayedHTML").innerHTML;
+      // console.log(Q);
+      // document.getElementById("displayedHTML").innerHTML = "";
+      // for (var w=0; w < 10000;w++) {
+      //   document.getElementById("displayedHTML").innerHTML = String(w);
+      // };
+      // document.getElementById("displayedHTML").innerHTML = Q;
     
-    // document.getElementById("decorativeRow02").innerHTML = "<h1>"+displayWord+"</h1>";
-    
-    // var test = charFoundAt("Mississippi", "i", 0);
-    // document.getElementById("decorativeRow02").innerHTML = "<h1>"+String(test)+"</h1>";
-    // console.log("test is "+test)
+    </script>
 
-    // a meothod to capture all html in document except body...
-    // var Q = document.getElementById("displayedHTML").innerHTML;
-    // console.log(Q);
-    // document.getElementById("displayedHTML").innerHTML = "";
-    // for (var w=0; w < 10000;w++) {
-    //   document.getElementById("displayedHTML").innerHTML = String(w);
-    // };
-    // document.getElementById("displayedHTML").innerHTML = Q;
-  
-  </script>
-
+  </div>
 </body>
 
 </html>

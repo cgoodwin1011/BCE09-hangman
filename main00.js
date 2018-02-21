@@ -1,48 +1,13 @@
 // Charles Goodwin | cgoodwin2127@gmail.com | hangman-HW3 | PennCodingBootCampJan18
 
-var randomWords = ["skinny", "rematch", "heavyweight", "dimensional", "bleeding", "guerilla", "addiction", "fantastic", "aerodynamic", "gossip", "regret", "pyramid", "audacity", "protest", "computer", "flirtation", "foreign", "parade", "royalty", "proven", "possess", "initial", "crunch", "amateur", "ambition", "handlebars", "distillery", "wolves", "harmless", "anything", "direction", "billionaire", "queen", "armchair", "cognitive", "crayon", "crawler", "twisted", "accommodation", "soul", "prophetic", "commando", "bewitching", "mongrel", "bribery", "engine", "dismemberment", "brutish", "apparition", "sparkle", "bumper", "undersea", "agonizing", "downward", "crimson", "extravagant", "dazzling", "freewill", "glumly", "hermit", "encounter", "jackknife", "cardinal", "obsession", "godless", "founder", "expansion", "glandular", "eternal", "someone", "deformity", "escape", "cannibalism", "wartime", "feature", "eyetooth", "extortion", "massacre", "generation", "council", "riddle", "carnal", "crater", "consultant", "cybernetic", "lavender", "heartsick", "sextile", "unquiet", "incognito", "canvass", "physics", "javascript", "altgeld", "retinue", "esquire", "arsenal", "chaufer", "repulse", "leftist", "acerbic", "bristle", "dentate", "concert"]
-var russianWriters = ["Tolstoy", "Dostoyevsky", "Pushkin", "Turgenev", "Nabokov", "Gogol", "Solzhenitsyn", "Gorky", "Pasternak", "Goncharov", "Lermontov", "Chernychevsky", "Bulgakov"]
+var wordList = ["skinny", "rematch", "heavyweight", "dimensional", "bleeding", "guerilla", "addiction", "fantastic", "aerodynamic", "gossip", "regret", "pyramid", "audacity", "protest", "computer", "flirtation", "foreign", "parade", "royalty", "proven", "possess", "initial", "crunch", "amateur", "ambition", "handlebars", "distillery", "wolves", "harmless", "anything", "direction", "billionaire", "queen", "armchair", "cognitive", "crayon", "crawler", "twisted", "accommodation", "soul", "prophetic", "commando", "bewitching", "mongrel", "bribery", "engine", "dismemberment", "brutish", "apparition", "sparkle", "bumper", "undersea", "agonizing", "downward", "crimson", "extravagant", "dazzling", "freewill", "glumly", "hermit", "encounter", "jackknife", "cardinal", "obsession", "godless", "founder", "expansion", "glandular", "eternal", "someone", "deformity", "escape", "cannibalism", "wartime", "feature", "eyetooth", "extortion", "massacre", "generation", "council", "riddle", "carnal", "crater", "consultant", "cybernetic", "lavender", "heartsick", "sextile", "unquiet", "incognito", "canvass", "physics", "javascript", "altgeld", "retinue", "esquire", "arsenal", "chaufer", "repulse", "leftist", "acerbic", "bristle", "dentate", "concert"]
+var russianWriters = ["Tolstoy", "Dostoyevsky", "Pushkin", "Turgenev", "Nabokov", "Gogol", "Solzhenitsyn", "Gorky", "Pasternak", "Goncharov", "Lermontov", "Chernnychevsky", "Bulgakov"]
 
 
 
 function chooseWord(chosenTheme) {
-  switch(chosenTheme) {
-    case "randomWords":
-      return randomWords[Math.floor(Math.random() * randomWords.length)];
-      break; // don't really need this, do we?
-    case "russianWriters":
-      return russianWriters[Math.floor(Math.random() * russianWriters.length)];
-      break;
-    case "worldCities":
-      return worldCities[Math.floor(Math.random() * worldCities.length)];
-      break;
-    }
-    
+    return wordList[Math.floor(Math.random() * wordList.length)];
 }
-
-function startGame() {
-  secretWord = chooseWord(theme);
-  guessList = []
-  badGuesses = []
-  numBadGuesses = 0;
-  numGuesses = 10;
-  remainingGuesses = numGuesses;
-  lettersUnsolved= secretWord.length; 
-  displayWord = '';
-  for (i = 0; i < secretWord.length; i++) {
-    displayWord += '_';
-  }
-  console.log(secretWord)
-  initializeDisplay();
-}
-
-function initializeDisplay() {
-  document.getElementById("remaining-guesses").innerHTML = remainingGuesses;
-  document.getElementById("letters-unsolved").innerHTML = secretWord.length;
-  document.getElementById("input-panel").innerHTML = genKeyBoardHTML();
-  document.getElementById("word-display").innerHTML = displayWord;
-}
-
 
 function genKeyBoardHTML() {
     var topRow = ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"];
@@ -92,17 +57,13 @@ function countChar(inString, inChar) {
 
 function youLose() {
   losingTheme.play();
-  if (confirm("You lose! \n\nWanna try this again?")) {
-    startGame();
-  } else {
-    alert("Thank you for playing");
-  }
+  confirm("You lose! \n\nWanna try this again?");
 }
 
 function youWin() {
   winningTheme.play();
   if (confirm("You won! \n\nWanna try this again?")) {
-    startGame();
+    window.location.reload(false);
   } else {
     alert("Goodbye");
   }
@@ -113,7 +74,7 @@ function handleGuess(aGuess) {
   // console.log("arrived at handleGuess with a '"+aGuess+"'")
   // console.log("at we found this letter at locations: "+guessFoundAt)
   //first, check for duplicats.  
-  if (charInString(displayWord.toLowerCase(), aGuess.toLowerCase()) || thingInArray(badGuesses, aGuess) ) {
+  if (charInString(targetWord, aGuess) || thingInArray(badGuesses, aGuess) ) {
     alert("You guessed "+aGuess+" already.  Try again!") 
   } else { 
     if (guessFoundAt != -1) {
@@ -122,14 +83,14 @@ function handleGuess(aGuess) {
       console.log("guess found at "+guessFoundAt)
       console.log("number of unsolved letters is"+lettersUnsolved)
             for (i = 0; i < guessFoundAt.length; i++) {
-        displayWord = replaceCharAt(displayWord, guessFoundAt[i], aGuess);
+        targetWord = replaceCharAt(targetWord, guessFoundAt[i], aGuess);
         lettersUnsolved--;
       } 
       if (lettersUnsolved === 0) {
         youWin();
       }
       // console.log("number of unsolved letters is"+lettersUnsolved)
-      document.getElementById("word-display").innerHTML = displayWord;
+      document.getElementById("word-display").innerHTML = targetWord;
       document.getElementById("letters-unsolved").innerHTML = lettersUnsolved;
     
     } else {
@@ -153,7 +114,6 @@ function handleNavMenuEvent(whichButton) {
     case "play":
       break;
     case "restart":
-      startGame();
       break;
     case "get-hint":
       var hint = secretWord[Math.floor(Math.random() * secretWord.length)];
@@ -172,8 +132,6 @@ function handleNavMenuEvent(whichButton) {
 
 function charFoundAt(inString, searchChar, startWhere) {
     var returnList = [];
-    inString = inString.toLowerCase();
-    searchChar = searchChar.toLowerCase();
     for (i = 0; i < inString.length; i++) {
         if (inString[i] === searchChar) {
             returnList.push(i); 
