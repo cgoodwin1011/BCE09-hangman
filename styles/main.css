@@ -1,25 +1,79 @@
 /* bootstrap 3 over-rides */
+/* ******************************************************************* */
+
+
 
 .btn {
     background-image: none;
     background-color: #401E0D;
-    /* border: 0.5px white solid; */
     border: 0.5px #FF6719 solid;
     color: #FF6719;
     margin: auto 1px;
 }
 
 .btn:hover {
-    /* background-color: #330000; */
     background-color: #833E1B;   
-    /* color: #FF7935; */
-    /* color: #E56D2F; */
     color: #E58F2F;
     border: 1px  #E58F2F solid;
 }
 
+.btn:focus,
+.btn:active:focus,
+.btn.active:focus,
+.btn.focus,
+.btn:active.focus,
+.btn.active.focus {
+  outline: none;
+}
 
+
+.btn:hover,
+.btn:focus,
+.btn.focus {
+  color: yellow;
+  text-decoration: none;
+}
+
+
+btn:focus {
+    outline: none;
+    background-image: none;
+    background-color: yellow;
+    color: white !important;
+}
+
+btn:visited {
+    outline: none;
+    background-image: none;
+    background-color: yellow;
+    color: white !important;
+}
+
+.dropdown {
+    float: right;
+}
+
+.dropdown-menu {
+    background-color: #833e1b;
+    border: 2px white solid;
+    border-radius: 5px;
+    color: white;
+}
+
+.dropdown-menu>li>a {
+    color: #E58F2F;
+    padding-left: 5px;
+}
+
+.dropdown-menu li {
+    color: #E58F2F;
+
+}
+
+
+/* ******************************************************************* */
 /* individual element styling */
+/* ******************************************************************* */
 #everything-wrapper {
     position: relative;
     margin: auto;
@@ -44,19 +98,30 @@
     width: 200px;;   
 }
 
+#illustration {
+    padding: 10px;
+    background-color: rgba(131,62,27,.3);
+    border-radius: 30px;
 
+}
 #control-panel {
     min-height: 500px;
-    padding: 10px;
+    /* padding: 10px; */
+    /* background-color: #401E0D; */
+    background-color:transparent;
+    background-image: url("../patterns/vintage-burnt-paper.png");
+    background-size: cover;
+    background-position-x: center; 
+    background-repeat: no-repeat;
     /* background: radial-gradient(rgba(64,30,13,1), rgba(64,30,13,.9), rgba(64,30,13,.8), rgba(131,62,27, .5), rgba(211, 14, 14, 0),  rgba(211, 14, 14, 0)); */
-    /* -moz-box-shadow:    inset 0px 0px 100px rgba(0,0,0,0);
-    -webkit-box-shadow: inset 0px 0px 100px rgba(0,0,0,0);
-    box-shadow:         inset 0px 0px 100px rgba(0,0,0,0);
-    background-color: #401E0D; */
-    background:
+    /* -moz-box-shadow:    inset 0px 0px 70px rgba(0,0,0,.5);
+    -webkit-box-shadow: inset 0px 0px 70px rgba(0,0,0,.5); 
+    box-shadow:         inset 0px 0px 70px rgba(0,0,0,.5); */
+    
+    /* background:
       /* linear-gradient(217deg, rgba(255,0,0,.8), rgba(255,0,0,0) 70.71%), */
       /* linear-gradient(127deg, rgba(0,255,0,.8), rgba(0,255,0,0) 70.71%), */
-      radial-gradient(farthest-corner at 50%, 0px, rgba(64,30,13,0.8), rgba(64,30,13,0));
+      /* radial-gradient(farthest-corner at 50%, 0px, rgba(64,30,13,0.8), rgba(64,30,13,0)); */ */
 }
 
 #score-panel {
@@ -76,9 +141,18 @@
 }
 
 #decorativeRow02 {
+    padding: 0;
     text-align: center;
+    border-radius: 25px;
+    color: yellow;
+    background-color: tomato;
 }
+#decorativeRow02 h3{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    padding: 0;
+    margin: 0;
 
+}
 
 #word-display-title {
     font-family: 'Fredericka the Great', cursive;
@@ -92,6 +166,11 @@
     font-family: 'Cousine', monospace;
     font-size: 2em;
     letter-spacing: 10px;
+    text-shadow:
+        -1px -1px 0 #000,
+        1px -1px 0 #FFF,
+        -1px 1px 0 #FFF,
+        1px 1px 0 #000;
     /* background-color: #FF3128; */
     /* background: radial-gradient(rgba(64,30,13,1), rgba(131,62,27, .5), rgba(211, 14, 14, 0)); */
     /* box-shadow: inset 0px 0px 40px 40px  rgba(255, 14, 14, 0); */
@@ -113,8 +192,17 @@
     /* background-color: lime; */
 }
 
+#bad-guesses {
+    font-family: 'Cousine', monospace;
+    /* border-radius: 25px;
+    color: yellowgreen;
+    background-color: tomato; */
+}
 
+/* ******************************************************************* */
 /* re-styling html elements */
+/* ******************************************************************* */
+
 body {
     background-color: black;
     background-image: url("../graphics/wallPapers/wmMorris01.jpg");
@@ -133,7 +221,7 @@ header {
 
 nav {
     position: absolute;
-    left:43.0%;
+    left:56.0%;
     bottom: 0%;
     margin:0;
     /* margin-top: 10%; */
@@ -143,7 +231,9 @@ nav {
     z-index: 999;
 }
 
+/* ******************************************************************* */
 /* styles of general application */
+/* ******************************************************************* */
 
 .horizontal-list {
     margin-right: 0;
@@ -179,6 +269,16 @@ nav {
 
 .blue-border {
     border: 1px blue solid;
+}
+
+.stroke-me
+{
+    color: white;
+    text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;  
 }
 
 /* styling for the keyboard region */

@@ -13,11 +13,15 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
     crossorigin="anonymous">
   
-    <!-- Optional theme -->
+  <!-- Optional theme -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
     crossorigin="anonymous">
   
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+  <!-- my styling -->
   <link rel="stylesheet" type="text/css" media="screen" href="styles/main.css" />
   
   <!-- link fonts -->
@@ -31,103 +35,134 @@
 <body>
   <div id="everything-wrapper" class="black-background">
     <div id="displayedHTML">
-    <header>
-      <div id="logo">
-        <img src="graphics/logos/HangmanLogo.png">
-      </div>
-      <nav>
-        <ul class="horizontal-list">
-          <li>
-            <button type="button" class="btn horizontal-list-item">Play</button>
-          </li>
-          <li>
-            <button type="button" class="btn horizontal-list-item">Restart</button>
-          </li>
-          <li>
-            <button type="button" class="btn horizontal-list-item">Get Hint</button>
-          </li>
-          <li>
-            <button type="button" class="btn horizontal-list-item">Solve Word</button>
-          </li>
-          <li>
-              <button type="button" class="btn horizontal-list-item">Instructions</button>
-          </li>
-          <li>
-            <button type="button" class="btn horizontal-list-item">Leave Game</button>
-          </li>
-        </ul>
-      </nav>
-    </header>
-    <div id="grid-wrapper" class="container">
-      <!-- <div id="left-sidebar" class="col-md-1">
-      </div> -->
-      <div id="main-display" class="col-md-12">
-        <div class="row">
-          <div id="illustration" class="col-md-4">
-            <img src="graphics/stick_figure/09a.png" height="500px" alt="placeholder">
-          </div>
-          <div id="control-panel" class="col-md-8">
-            <div class="row" id="decorativeRow00">
-                <br>* * *<br>
+      <header>
+        <div id="logo">
+          <img src="graphics/logos/HangmanLogo.png">
+        </div>
+        <div class="dropdown">
+          <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">Choose your Theme
+          <span class="caret"></span></button>
+          <ul class="dropdown-menu">
+            <li><a href="#">Random</a></li>
+            <li><a href="#">World Cities</a></li>
+            <li><a href="#">Russian Novelists</a></li>
+          </ul>
+        </div>
+        <nav>
+          <ul class="horizontal-list">
+            <li>
+              <button type="button" id="play" onclick="handleNavMenuEvent(this.id)"  class="btn horizontal-list-item">Play</button>
+            </li>
+            <li>
+              <button type="button" id="restart" onclick="handleNavMenuEvent(this.id)"  class="btn horizontal-list-item">Restart</button>
+            </li>
+            <li>
+              <button type="button" id="get-hint" onclick="handleNavMenuEvent(this.id)" class="btn horizontal-list-item">Get Hint</button>
+            </li>
+            <li>
+              <button type="button" id="solve-word" onclick="handleNavMenuEvent(this.id)" class="btn horizontal-list-item">Solve Word</button>
+            </li>
+            <li>
+                <button type="button" id="instructions" onclick="handleNavMenuEvent(this.id)"  class="btn horizontal-list-item">Instructions</button>
+            </li>
+            <!-- <li>
+              <button type="button" class="btn horizontal-list-item">Leave Game</button>
+            </li> -->
+          </ul>
+        </nav>
+      </header>
+      <div id="grid-wrapper" class="container">
+        <!-- <div id="left-sidebar" class="col-md-1">
+        </div> -->
+        <div id="main-display" class="col-md-12">
+          <div class="row">
+            <div id="illustration" class="col-md-4">
+              <img src="graphics/stick_figure/09a.png" height="600px" alt="hanged man">
             </div>
-            <div id="score-panel" class="row">
-              Guesses Remaining:
-              <span id="remaining-guesses">__</span>
-              <br>Letters Unsolved: <span id=letters-Unsolved>__</span>
-              <p id="word-display-title">The Secret is</p>
-              <p id="word-display">_ b _ _ _ d</p>
-            </div>
-            <div class="row" id="decorativeRow01">
-                <br><br>* * *<br><br>
-            </div>
-            <div id="input-panel" class="row" style="float: clear"></div>
-            <div class="row" id="decorativeRow02">
-                <br><br>* * *<br><br>
+            <div id="control-panel" class="col-md-8">
+              <div class="row" id="decorativeRow00">
+                  <br>* * *<br>
+              </div>
+              <div id="score-panel" class="row stroke-me">
+                Guesses Remaining:
+                <span id="remaining-guesses">__</span>
+                <br>Letters Unsolved: <span id=letters-unsolved>__</span>
+                <p>Bad guesses are: <br><span id="bad-guesses"></span></p>
+                <p id="word-display-title">The Secret is</p>
+                <p id="word-display"></p>
+              </div>
+              <div class="row" id="decorativeRow01">
+                  <!-- <br><br>* * *<br><br> -->
+              </div>
+              <div id="input-panel" class="row" style="float: clear"></div>
+              <div class="row" id="decorativeRow02">
+                  
+              </div>
             </div>
           </div>
         </div>
+        <!-- <div id="right-sidebar" class="col-md-1">
+        </div> -->
       </div>
-      <!-- <div id="right-sidebar" class="col-md-1">
-      </div> -->
     </div>
-    </div>≈
     <script>
       // initialize game
       // musicTheme.loop = true;
       // musicTheme.play();
-      var secretWord = chooseWord();
-      // var secretWord = 'eeeeeee'
-      var wordLength = secretWord.length;
+      
+      //Globals.
+      var theme = "wordList";
+      var gamesWon = 0;  
+      var gamesLost = 0;
+      var secretWord = chooseWord(theme);
       var guessList = []
       var badGuesses = []
+      var numBadGuesses = 0;
+      var numGuesses = 10;
+      var remainingGuesses = numGuesses;
+      var lettersUnsolved= secretWord.length; 
+      var musicTheme = new Audio("sounds/music_zapsplat_trick_or_treat.mp3");
+      var losingTheme = new Audio("sounds/human_crying_sobbing_male_35_years_old.mp3");
+      var winningTheme = new Audio("sounds/Hallelujah-sound-effect.mp3");
       var targetWord = '';
       for (i = 0; i < secretWord.length; i++) {
         targetWord += '_';
       }
-      
+
       console.log(secretWord);
+
+      // Intialize display
       document.getElementById("remaining-guesses").innerHTML = remainingGuesses;
-      document.getElementById("letters-Unsolved").innerHTML = wordLength;
+      document.getElementById("letters-unsolved").innerHTML = secretWord.length;
       document.getElementById("input-panel").innerHTML = genKeyBoardHTML();
       document.getElementById("word-display").innerHTML = targetWord;
       
-      //get guess
-      var guess = 'e';
-      var guessFoundAt = charFoundAt(secretWord, guess, 0);
-      if (guessFoundAt != -1) {
-        guessList[guessList.length] = guess;
-        console.log(guessFoundAt)
-        // debugger
-        for (i = 0; i < guessFoundAt.length; i++) {
-          targetWord = replaceCharAt(targetWord, guessFoundAt[i], guess)
-          // console.log(targetWord);
-        } 
-      } else {
-
-        // console.log(targetWord);
+      // waiting for input
+        // if input is screen kbd click --> hanlded in main.js
+        // if input is keyboard click 
+      document.onkeyup = function(event) {
+        // console.log("we are handling a key event "+event.key);
+        if (isAlpha(event.key)) {
+          // console.log("had it isAlpha");
+          handleGuess(event.key);
+        } else {
+          // alert("please type a letter");
+        }
       }
-      console.log(targetWord)
-      document.getElementById("word-display").innerHTML = targetWord;
+
+
+
+      // var x = event.key;
+
+      // If the pressed keyboard button is "a" or "A" (using caps lock or shift), alert some text.
+
+        // if (x == "a" || x == "A") { 
+        //     alert ("You pressed the 'A' key!");
+        // }
+
+
+
+      // document.getElementById("word-display").innerHTML = targetWord;
       
       // document.getElementById("decorativeRow02").innerHTML = "<h1>"+targetWord+"</h1>";
       
